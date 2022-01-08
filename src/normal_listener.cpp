@@ -6,7 +6,7 @@ namespace normal
     :   Node(node_name)
     {
         sub_talker_ = this->create_subscription<std_msgs::msg::String>("lifecycle_talker", 1, [this](const std_msgs::msg::String::ConstSharedPtr msg){this->talker_callback(msg);});
-        sub_notification_ = this->create_subscription<lifecycle_msgs::msg::TransitionEvent>("/lc_talker/transition_event", 10, [this](const lifecycle_msgs::msg::TransitionEvent::ConstSharedPtr msg){this->notification_callback(msg);});
+        sub_notification_ = this->create_subscription<lifecycle_msgs::msg::TransitionEvent>("lc_talker/transition_event", 10, [this](const lifecycle_msgs::msg::TransitionEvent::ConstSharedPtr msg){this->notification_callback(msg);});
     }
 
     listener::~listener()

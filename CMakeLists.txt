@@ -33,18 +33,28 @@ add_executable(lifecycle_talker
 )
 ament_target_dependencies(lifecycle_talker ${dependencies})
 
-install(TARGETS lifecycle_talker
-  DESTINATION lib/${PROJECT_NAME}
-)
-
 add_executable(normal_listener
   src/normal_listener_node.cpp
   src/normal_listener.cpp
 )
 ament_target_dependencies(normal_listener ${dependencies})
 
-install(TARGETS normal_listener
+add_executable(lc_client
+  src/lifecycle_service_client_node.cpp
+  src/lifecycle_service_client.cpp
+)
+ament_target_dependencies(lc_client ${dependencies})
+
+install(TARGETS
+  lifecycle_talker
+  normal_listener
+  lc_client
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 if(BUILD_TESTING)
