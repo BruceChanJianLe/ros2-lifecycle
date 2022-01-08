@@ -8,7 +8,6 @@
 
 // ROS2
 #include "rclcpp/rclcpp.hpp"
-#include "rclcpp/exceptions/exceptions.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 
 #include "std_msgs/msg/string.hpp"
