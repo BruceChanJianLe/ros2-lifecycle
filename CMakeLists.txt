@@ -37,6 +37,16 @@ install(TARGETS lifecycle_talker
   DESTINATION lib/${PROJECT_NAME}
 )
 
+add_executable(normal_listener
+  src/normal_listener_node.cpp
+  src/normal_listener.cpp
+)
+ament_target_dependencies(normal_listener ${dependencies})
+
+install(TARGETS normal_listener
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
