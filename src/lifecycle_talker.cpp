@@ -42,7 +42,6 @@ namespace lifecycle
         try
         {
             pub_ = this->create_publisher<std_msgs::msg::String>("lifecycle_talker", 1);
-            timer_ = this->create_wall_timer(std::chrono::seconds(1), [this](){this->publish();});
         }
         catch(const rclcpp::exceptions::RCLError & e)
         {
@@ -70,6 +69,8 @@ namespace lifecycle
         try
         {
             pub_->on_activate();
+            // Start timer during on_active as it will automatically start once create_wall_timer is called
+            timer_ = this->create_wall_timer(std::chrono::seconds(1), [this](){this->publish();});
         }
         catch(const rclcpp::exceptions::RCLError & e)
         {
@@ -123,7 +124,7 @@ namespace lifecycle
 
     rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn talker::on_cleanup(const rclcpp_lifecycle::State & state)
     {
-         try
+        try
         {
             timer_.reset();
             pub_.reset();
