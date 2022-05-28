@@ -37,6 +37,23 @@ Use the bash script in tmux directory to run the full demo.
 ./start_demo.bash
 ```
 
+## Command Line Interface
+
+List available lifecycle nodes
+```bash
+ros2 lifecycle nodes
+```
+
+Get the state of a lifecycle node
+```bash
+ros2 lifecycle get /component_talker_node
+```
+
+Set the state of a lifecycle node
+```bash
+ros2 lifecycle set /component_talker_node configure/activate/deactivate/cleanup/shutdown
+```
+
 ## Reference
 
 - https://index.ros.org/p/lifecycle/
